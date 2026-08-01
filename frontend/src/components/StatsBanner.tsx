@@ -25,7 +25,7 @@ export const StatsBanner: React.FC<StatsProps> = ({ stats, relayerStatus }) => {
           </div>
         </div>
         <div className="text-2xl font-bold text-white font-mono-code">
-          {stats.totalEthDeposits * 100} <span className="text-sm font-normal text-zinc-400">TBT</span>
+          {stats.totalEthDeposits} <span className="text-sm font-normal text-zinc-400">TBT</span>
         </div>
         <p className="text-[11px] text-zinc-400 mt-1">Ethereum Bridge Balance</p>
       </div>
@@ -39,7 +39,7 @@ export const StatsBanner: React.FC<StatsProps> = ({ stats, relayerStatus }) => {
           </div>
         </div>
         <div className="text-2xl font-bold text-white font-mono-code">
-          {stats.completedTransactionsCount * 100} <span className="text-sm font-normal text-zinc-400">wTBT</span>
+          {stats.totalSolBurned} <span className="text-sm font-normal text-zinc-400">wTBT</span>
         </div>
         <p className="text-[11px] text-zinc-400 mt-1">Solana Active Supply</p>
       </div>
