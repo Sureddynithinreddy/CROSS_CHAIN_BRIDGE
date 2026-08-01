@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: bridge-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  relayer:
+    build:
+      context: ./relayer
+      dockerfile: Dockerfile
+    container_name: bridge-relayer
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/bridge-db
+      - ETH_RPC_URL=http://host.docker.internal:8545
+      - SOLANA_RPC_URL=http://host.docker.internal:8899
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bridge-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - relayer
+
+volumes:
+  mongodb_data:
